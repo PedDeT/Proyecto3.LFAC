@@ -1,51 +1,96 @@
 %{
 #include <stdio.h>
+#include <stdlib.h>
+#include "y.tab.h"
+
+void yyerror(const char *s);
 %}
 
-digit       [0-9]
-letter      [a-zA-Z]
-identifier  {letter}({letter}|{digit})*
-number      {digit}+
-whitespace  [ \t\n]+
+/* Define tokens */
+%token SELECT FROM WHERE INSERT INTO VALUES DELETE UPDATE SET CREATE TABLE DROP ALTER ADD COLUMN 
+%token IF ELSE WHILE RETURN INT FLOAT DOUBLE CHAR
+%token IDENTIFIER NUMBER STRING
+%token ASSIGN /* := or = */
+%token EQ NEQ LT GT LEQ GEQ
+%token PLUS MINUS TIMES DIVIDE
 
 %%
 
-"if"        { printf("IF\n"); }
-"else"      { printf("ELSE\n"); }
-"while"     { printf("WHILE\n"); }
-"return"    { printf("RETURN\n"); }
-"int"       { printf("INT\n"); }
-"float"     { printf("FLOAT\n"); }
-"void"      { printf("VOID\n"); }
+/* Rules for keywords */
+"SELECT"      { return SELECT; }
+"FROM"        { return FROM; }
+"WHERE"       { return WHERE; }
+"INSERT"      { return INSERT; }
+"INTO"        { return INTO; }
+"VALUES"      { return VALUES; }
+"DELETE"      { return DELETE; }
+"UPDATE"      { return UPDATE; }
+"SET"         { return SET; }
+"CREATE"      { return CREATE; }
+"TABLE"       { return TABLE; }
+"DROP"        { return DROP; }
+"ALTER"       { return ALTER; }
+"ADD"         { return ADD; }
+"COLUMN"      { return COLUMN; }
+"if"          { return IF; }
+"else"        { return ELSE; }
+"while"       { return WHILE; }
+"return"      { return RETURN; }
+"int"         { return INT; }
+"float"       { return FLOAT; }
+"double"      { return DOUBLE; }
+"char"        { return CHAR; }
 
-{identifier} { printf("IDENTIFIER(%s)\n", yytext); }
-{number}     { printf("NUMBER(%s)\n", yytext); }
-{whitespace} { /* ignore whitespace */ }
+/* Rules for identifiers */
+[a-zA-Z_][a-zA-Z0-9_]* {
+    yylval.str = strdup(yytext);
+    return IDENTIFIER;
+}
 
-"+"         { printf("PLUS\n"); }
-"-"         { printf("MINUS\n"); }
-"*"         { printf("MULTIPLY\n"); }
-"/"         { printf("DIVIDE\n"); }
-"="         { printf("ASSIGN\n"); }
-"=="        { printf("EQUAL\n"); }
-"!="        { printf("NOT_EQUAL\n"); }
-"<"         { printf("LESS_THAN\n"); }
-">"         { printf("GREATER_THAN\n"); }
-"<="        { printf("LESS_EQUAL\n"); }
-">="        { printf("GREATER_EQUAL\n"); }
+/* Rules for numbers */
+[0-9]+ {
+    yylval.num = atoi(yytext);
+    return NUMBER;
+}
 
-"("         { printf("LPAREN\n"); }
-")"         { printf("RPAREN\n"); }
-"{"         { printf("LBRACE\n"); }
-"}"         { printf("RBRACE\n"); }
-";"         { printf("SEMICOLON\n"); }
-","         { printf("COMMA\n"); }
+/* Rules for strings */
+\"[^\"]*\" {
+    yylval.str = strdup(yytext + 1);  /* Remove the starting quote */
+    yylval.str[strlen(yylval.str) - 1] = '\0';  /* Remove the ending quote */
+    return STRING;
+}
 
-.           { printf("UNKNOWN(%s)\n", yytext); }
+/* Rules for operators */
+":="          { return ASSIGN; }
+"="           { return EQ; }
+"!="          { return NEQ; }
+"<>"          { return NEQ; }
+"<"           { return LT; }
+">"           { return GT; }
+"<="          { return LEQ; }
+">="          { return GEQ; }
+"+"           { return PLUS; }
+"-"           { return MINUS; }
+"*"           { return TIMES; }
+"/"           { return DIVIDE; }
+"("           { return '('; }
+")"           { return ')'; }
+","           { return ','; }
+";"           { return ';'; }
+
+/* Ignore whitespace */
+[ \t\n]+      { /* ignore whitespace */ }
+
+/* Catch all for unrecognized characters */
+.             { yyerror("Unrecognized character"); }
 
 %%
 
-int main(int argc, char **argv) {
-    yylex();
+int yywrap() {
+    return 1;
+}
+
+int main() {
+    yyparse();
     return 0;
 }
