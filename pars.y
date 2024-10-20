@@ -1,11 +1,10 @@
 %{
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 void yyerror(const char *s);
-
 extern int yylex();
-extern int yyparse();
 %}
 
 %union {
@@ -20,7 +19,7 @@ extern int yyparse();
 %token IF ELSE WHILE RETURN INT FLOAT DOUBLE CHAR
 %token ASSIGN /* := or = */
 %token EQ NEQ LT GT LEQ GEQ
-%token PLUS MINUS TIMES DIVIDE
+%token PLUS MINUS TIMES DIVIDE LPAREN RPAREN
 
 /* Declare the types of non-terminals */
 %type <str> type
@@ -34,6 +33,7 @@ extern int yyparse();
 
 %%
 
+// Define grammar rules
 program:
     statement_list
     ;
@@ -52,7 +52,7 @@ statement:
     ;
 
 variable_declaration:
-    type IDENTIFIER ';' { printf("Variable declaration: %s %s\n", $1, $2); }
+    type IDENTIFIER ';' { printf("Variable declaration: %s %s\n", $1, $2); free($2); }
     ;
 
 assignment:
@@ -91,14 +91,19 @@ factor:
     ;
 
 type:
-    INT { $$ = "int"; }
-    | FLOAT { $$ = "float"; }
-    | DOUBLE { $$ = "double"; }
-    | CHAR { $$ = "char"; }
+    INT { $$ = strdup("int"); }
+    | FLOAT { $$ = strdup("float"); }
+    | DOUBLE { $$ = strdup("double"); }
+    | CHAR { $$ = strdup("char"); }
     ;
 
 %%
 
+// Error handling function
 void yyerror(const char *s) {
     fprintf(stderr, "Error: %s\n", s);
+}
+
+int main(int argc, char **argv) {
+    return yyparse();
 }

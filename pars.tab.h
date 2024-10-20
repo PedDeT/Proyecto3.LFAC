@@ -91,7 +91,9 @@ extern int yydebug;
     MINUS = 292,                   /* MINUS  */
     TIMES = 293,                   /* TIMES  */
     DIVIDE = 294,                  /* DIVIDE  */
-    IFX = 295                      /* IFX  */
+    LPAREN = 295,                  /* LPAREN  */
+    RPAREN = 296,                  /* RPAREN  */
+    IFX = 297                      /* IFX  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
@@ -100,12 +102,12 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 11 "pars.y"
+#line 10 "pars.y"
 
     int num;
     char *str;
 
-#line 109 "pars.tab.h"
+#line 111 "pars.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;

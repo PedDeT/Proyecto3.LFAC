@@ -46,10 +46,12 @@ STRING \"(\\.|[^\\"])*\"
 "-"              { return MINUS; }
 "*"              { return TIMES; }
 "/"              { return DIVIDE; }
+"("              { return LPAREN; }
+")"              { return RPAREN; }
 {IDENTIFIER}     { yylval.str = strdup(yytext); return IDENTIFIER; }
 {NUMBER}         { yylval.num = atoi(yytext); return NUMBER; }
 {STRING}         { yylval.str = strdup(yytext); return STRING; }
-[ \t\n]+         { /* Ignore whitespace */ }
+[ \t\n]+         { /* Ignorar espacios en blanco */ }
 .                { printf("Unexpected character: %s\n", yytext); exit(1); }
 %%
 
