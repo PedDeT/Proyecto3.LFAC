@@ -3,12 +3,14 @@
 #include <stdlib.h>
 
 void yyerror(const char *s);
+int line_number = 1;
 %}
 
 /* Define tokens */
 IDENTIFIER [a-zA-Z_][a-zA-Z0-9_]*
 NUMBER [0-9]+
-STRING \"(\\.|[^\\"])*\"
+STRING \"(\\.|[^\\"])*\"  
+SINGLE_QUOTE_STRING \'(\\.|[^\\'])*\'  
 
 %%
 "SELECT"         { printf("Token: SELECT\n"); }
@@ -47,14 +49,20 @@ STRING \"(\\.|[^\\"])*\"
 "/"              { printf("Token: DIVIDE\n"); }
 "("              { printf("Token: LPAREN\n"); }
 ")"              { printf("Token: RPAREN\n"); }
+","              { printf("Token: COMMA\n"); }
+";"              { printf("Token: ENDOFLINE\n"); }
+
 {IDENTIFIER}     { printf("Token: IDENTIFIER (%s)\n", yytext); }
 {NUMBER}         { printf("Token: NUMBER (%s)\n", yytext); }
 {STRING}         { printf("Token: STRING (%s)\n", yytext); }
-[ \t\n]+         { /* Ignore whitespaces */ }
-.                { printf("Unexpected character: %s\n", yytext); exit(1); }
+{SINGLE_QUOTE_STRING} { printf("Token: SINGLE QUOTE STRING (%s)\n", yytext); }
+[ \t]+           { /* Ignore whitespace */ }
+\n               { line_number++; }  // Increment line number on newline
+"/*"             { /* Ignore multi-line comment */ }
+"*/"             { /* Ignore multi-line comment */ }
+.                { printf("Unexpected character on line %d: %s\n", line_number, yytext); exit(1); }
 %%
 
 int yywrap() {
     return 1;
 }
-
