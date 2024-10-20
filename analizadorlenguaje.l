@@ -58,21 +58,3 @@ int yywrap() {
     return 1;
 }
 
-int main(int argc, char **argv) {
-    // Open the input file
-    FILE *file = fopen("ejemplo_computadoras.sql", "r");
-    if (!file) {
-        perror("Could not open file ejemplo_computadoras.sql");
-        return 1;
-    }
-
-    // Set yyin to read from the file
-    yyin = file;
-
-    // Start the lexer
-    yylex();
-
-    // Close the file
-    fclose(file);
-    return 0;
-}
