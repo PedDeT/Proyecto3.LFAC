@@ -516,14 +516,13 @@ int yy_flex_debug = 0;
 char *yytext;
 #line 1 "analizadorlenguaje.l"
 #line 2 "analizadorlenguaje.l"
-#include "pars.tab.h"
 #include <stdio.h>
 #include <stdlib.h>
 
 void yyerror(const char *s);
-#line 525 "lex.yy.c"
+#line 524 "lex.yy.c"
 /* Define tokens */
-#line 527 "lex.yy.c"
+#line 526 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -740,9 +739,9 @@ YY_DECL
 		}
 
 	{
-#line 14 "analizadorlenguaje.l"
+#line 13 "analizadorlenguaje.l"
 
-#line 746 "lex.yy.c"
+#line 745 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -801,217 +800,217 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 15 "analizadorlenguaje.l"
-{ return SELECT; }
+#line 14 "analizadorlenguaje.l"
+{ printf("Token: SELECT\n"); }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 16 "analizadorlenguaje.l"
-{ return FROM; }
+#line 15 "analizadorlenguaje.l"
+{ printf("Token: FROM\n"); }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 17 "analizadorlenguaje.l"
-{ return WHERE; }
+#line 16 "analizadorlenguaje.l"
+{ printf("Token: WHERE\n"); }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 18 "analizadorlenguaje.l"
-{ return INSERT; }
+#line 17 "analizadorlenguaje.l"
+{ printf("Token: INSERT\n"); }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 19 "analizadorlenguaje.l"
-{ return INTO; }
+#line 18 "analizadorlenguaje.l"
+{ printf("Token: INTO\n"); }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 20 "analizadorlenguaje.l"
-{ return VALUES; }
+#line 19 "analizadorlenguaje.l"
+{ printf("Token: VALUES\n"); }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 21 "analizadorlenguaje.l"
-{ return DELETE; }
+#line 20 "analizadorlenguaje.l"
+{ printf("Token: DELETE\n"); }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 22 "analizadorlenguaje.l"
-{ return UPDATE; }
+#line 21 "analizadorlenguaje.l"
+{ printf("Token: UPDATE\n"); }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 23 "analizadorlenguaje.l"
-{ return SET; }
+#line 22 "analizadorlenguaje.l"
+{ printf("Token: SET\n"); }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 24 "analizadorlenguaje.l"
-{ return CREATE; }
+#line 23 "analizadorlenguaje.l"
+{ printf("Token: CREATE\n"); }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 25 "analizadorlenguaje.l"
-{ return TABLE; }
+#line 24 "analizadorlenguaje.l"
+{ printf("Token: TABLE\n"); }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 26 "analizadorlenguaje.l"
-{ return DROP; }
+#line 25 "analizadorlenguaje.l"
+{ printf("Token: DROP\n"); }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 27 "analizadorlenguaje.l"
-{ return ALTER; }
+#line 26 "analizadorlenguaje.l"
+{ printf("Token: ALTER\n"); }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 28 "analizadorlenguaje.l"
-{ return ADD; }
+#line 27 "analizadorlenguaje.l"
+{ printf("Token: ADD\n"); }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 29 "analizadorlenguaje.l"
-{ return COLUMN; }
+#line 28 "analizadorlenguaje.l"
+{ printf("Token: COLUMN\n"); }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 30 "analizadorlenguaje.l"
-{ return IF; }
+#line 29 "analizadorlenguaje.l"
+{ printf("Token: IF\n"); }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 31 "analizadorlenguaje.l"
-{ return ELSE; }
+#line 30 "analizadorlenguaje.l"
+{ printf("Token: ELSE\n"); }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 32 "analizadorlenguaje.l"
-{ return WHILE; }
+#line 31 "analizadorlenguaje.l"
+{ printf("Token: WHILE\n"); }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 33 "analizadorlenguaje.l"
-{ return RETURN; }
+#line 32 "analizadorlenguaje.l"
+{ printf("Token: RETURN\n"); }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 34 "analizadorlenguaje.l"
-{ return INT; }
+#line 33 "analizadorlenguaje.l"
+{ printf("Token: INT\n"); }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 35 "analizadorlenguaje.l"
-{ return FLOAT; }
+#line 34 "analizadorlenguaje.l"
+{ printf("Token: FLOAT\n"); }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 36 "analizadorlenguaje.l"
-{ return DOUBLE; }
+#line 35 "analizadorlenguaje.l"
+{ printf("Token: DOUBLE\n"); }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 37 "analizadorlenguaje.l"
-{ return CHAR; }
+#line 36 "analizadorlenguaje.l"
+{ printf("Token: CHAR\n"); }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 38 "analizadorlenguaje.l"
-{ return ASSIGN; }
+#line 37 "analizadorlenguaje.l"
+{ printf("Token: ASSIGN\n"); }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 39 "analizadorlenguaje.l"
-{ return EQ; }
+#line 38 "analizadorlenguaje.l"
+{ printf("Token: EQ\n"); }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 40 "analizadorlenguaje.l"
-{ return NEQ; }
+#line 39 "analizadorlenguaje.l"
+{ printf("Token: NEQ\n"); }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 41 "analizadorlenguaje.l"
-{ return LT; }
+#line 40 "analizadorlenguaje.l"
+{ printf("Token: LT\n"); }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 42 "analizadorlenguaje.l"
-{ return GT; }
+#line 41 "analizadorlenguaje.l"
+{ printf("Token: GT\n"); }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 43 "analizadorlenguaje.l"
-{ return LEQ; }
+#line 42 "analizadorlenguaje.l"
+{ printf("Token: LEQ\n"); }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 44 "analizadorlenguaje.l"
-{ return GEQ; }
+#line 43 "analizadorlenguaje.l"
+{ printf("Token: GEQ\n"); }
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 45 "analizadorlenguaje.l"
-{ return PLUS; }
+#line 44 "analizadorlenguaje.l"
+{ printf("Token: PLUS\n"); }
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 46 "analizadorlenguaje.l"
-{ return MINUS; }
+#line 45 "analizadorlenguaje.l"
+{ printf("Token: MINUS\n"); }
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 47 "analizadorlenguaje.l"
-{ return TIMES; }
+#line 46 "analizadorlenguaje.l"
+{ printf("Token: TIMES\n"); }
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 48 "analizadorlenguaje.l"
-{ return DIVIDE; }
+#line 47 "analizadorlenguaje.l"
+{ printf("Token: DIVIDE\n"); }
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 49 "analizadorlenguaje.l"
-{ return LPAREN; }
+#line 48 "analizadorlenguaje.l"
+{ printf("Token: LPAREN\n"); }
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 50 "analizadorlenguaje.l"
-{ return RPAREN; }
+#line 49 "analizadorlenguaje.l"
+{ printf("Token: RPAREN\n"); }
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 51 "analizadorlenguaje.l"
-{ yylval.str = strdup(yytext); return IDENTIFIER; }
+#line 50 "analizadorlenguaje.l"
+{ printf("Token: IDENTIFIER (%s)\n", yytext); }
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 52 "analizadorlenguaje.l"
-{ yylval.num = atoi(yytext); return NUMBER; }
+#line 51 "analizadorlenguaje.l"
+{ printf("Token: NUMBER (%s)\n", yytext); }
 	YY_BREAK
 case 39:
 /* rule 39 can match eol */
 YY_RULE_SETUP
-#line 53 "analizadorlenguaje.l"
-{ yylval.str = strdup(yytext); return STRING; }
+#line 52 "analizadorlenguaje.l"
+{ printf("Token: STRING (%s)\n", yytext); }
 	YY_BREAK
 case 40:
 /* rule 40 can match eol */
 YY_RULE_SETUP
-#line 54 "analizadorlenguaje.l"
-{ /* Ignorar espacios en blanco */ }
+#line 53 "analizadorlenguaje.l"
+{ /* Ignore whitespaces */ }
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 55 "analizadorlenguaje.l"
+#line 54 "analizadorlenguaje.l"
 { printf("Unexpected character: %s\n", yytext); exit(1); }
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 56 "analizadorlenguaje.l"
+#line 55 "analizadorlenguaje.l"
 ECHO;
 	YY_BREAK
-#line 1015 "lex.yy.c"
+#line 1014 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2016,10 +2015,29 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 56 "analizadorlenguaje.l"
+#line 55 "analizadorlenguaje.l"
 
 
 int yywrap() {
     return 1;
+}
+
+int main(int argc, char **argv) {
+    // Open the input file
+    FILE *file = fopen("ejemplo_computadoras.sql", "r");
+    if (!file) {
+        perror("Could not open file ejemplo_computadoras.sql");
+        return 1;
+    }
+
+    // Set yyin to read from the file
+    yyin = file;
+
+    // Start the lexer
+    yylex();
+
+    // Close the file
+    fclose(file);
+    return 0;
 }
 

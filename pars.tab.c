@@ -75,8 +75,9 @@
 
 void yyerror(const char *s);
 extern int yylex();
+extern FILE *yyin;  // File pointer for input
 
-#line 80 "pars.tab.c"
+#line 81 "pars.tab.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -552,9 +553,9 @@ static const yytype_int8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    38,    38,    42,    43,    47,    48,    49,    50,    51,
-      55,    59,    63,    64,    68,    72,    76,    77,    78,    82,
-      83,    84,    88,    89,    90,    94,    95,    96,    97
+       0,    39,    39,    43,    44,    48,    49,    50,    51,    52,
+      56,    60,    64,    65,    69,    73,    77,    78,    79,    83,
+      84,    85,    89,    90,    91,    95,    96,    97,    98
 };
 #endif
 
@@ -1147,109 +1148,109 @@ yyreduce:
   switch (yyn)
     {
   case 10: /* variable_declaration: type IDENTIFIER ';'  */
-#line 55 "pars.y"
+#line 56 "pars.y"
                         { printf("Variable declaration: %s %s\n", (yyvsp[-2].str), (yyvsp[-1].str)); free((yyvsp[-1].str)); }
-#line 1153 "pars.tab.c"
+#line 1154 "pars.tab.c"
     break;
 
   case 11: /* assignment: IDENTIFIER ASSIGN expression ';'  */
-#line 59 "pars.y"
+#line 60 "pars.y"
                                      { printf("Assignment: %s := %d\n", (yyvsp[-3].str), (yyvsp[-1].num)); }
-#line 1159 "pars.tab.c"
+#line 1160 "pars.tab.c"
     break;
 
   case 14: /* while_statement: WHILE '(' expression ')' statement  */
-#line 68 "pars.y"
+#line 69 "pars.y"
                                        { printf("While statement\n"); }
-#line 1165 "pars.tab.c"
+#line 1166 "pars.tab.c"
     break;
 
   case 15: /* expression_statement: expression ';'  */
-#line 72 "pars.y"
+#line 73 "pars.y"
                    { printf("Expression statement: %d\n", (yyvsp[-1].num)); }
-#line 1171 "pars.tab.c"
+#line 1172 "pars.tab.c"
     break;
 
   case 16: /* expression: expression PLUS term  */
-#line 76 "pars.y"
+#line 77 "pars.y"
                          { (yyval.num) = (yyvsp[-2].num) + (yyvsp[0].num); }
-#line 1177 "pars.tab.c"
+#line 1178 "pars.tab.c"
     break;
 
   case 17: /* expression: expression MINUS term  */
-#line 77 "pars.y"
+#line 78 "pars.y"
                             { (yyval.num) = (yyvsp[-2].num) - (yyvsp[0].num); }
-#line 1183 "pars.tab.c"
+#line 1184 "pars.tab.c"
     break;
 
   case 18: /* expression: term  */
-#line 78 "pars.y"
+#line 79 "pars.y"
            { (yyval.num) = (yyvsp[0].num); }
-#line 1189 "pars.tab.c"
+#line 1190 "pars.tab.c"
     break;
 
   case 19: /* term: term TIMES factor  */
-#line 82 "pars.y"
+#line 83 "pars.y"
                       { (yyval.num) = (yyvsp[-2].num) * (yyvsp[0].num); }
-#line 1195 "pars.tab.c"
+#line 1196 "pars.tab.c"
     break;
 
   case 20: /* term: term DIVIDE factor  */
-#line 83 "pars.y"
+#line 84 "pars.y"
                          { (yyval.num) = (yyvsp[-2].num) / (yyvsp[0].num); }
-#line 1201 "pars.tab.c"
+#line 1202 "pars.tab.c"
     break;
 
   case 21: /* term: factor  */
-#line 84 "pars.y"
+#line 85 "pars.y"
              { (yyval.num) = (yyvsp[0].num); }
-#line 1207 "pars.tab.c"
+#line 1208 "pars.tab.c"
     break;
 
   case 22: /* factor: NUMBER  */
-#line 88 "pars.y"
+#line 89 "pars.y"
            { (yyval.num) = (yyvsp[0].num); }
-#line 1213 "pars.tab.c"
+#line 1214 "pars.tab.c"
     break;
 
   case 23: /* factor: IDENTIFIER  */
-#line 89 "pars.y"
+#line 90 "pars.y"
                  { (yyval.num) = 0; /* Placeholder value */ }
-#line 1219 "pars.tab.c"
+#line 1220 "pars.tab.c"
     break;
 
   case 24: /* factor: '(' expression ')'  */
-#line 90 "pars.y"
+#line 91 "pars.y"
                          { (yyval.num) = (yyvsp[-1].num); }
-#line 1225 "pars.tab.c"
+#line 1226 "pars.tab.c"
     break;
 
   case 25: /* type: INT  */
-#line 94 "pars.y"
+#line 95 "pars.y"
         { (yyval.str) = strdup("int"); }
-#line 1231 "pars.tab.c"
+#line 1232 "pars.tab.c"
     break;
 
   case 26: /* type: FLOAT  */
-#line 95 "pars.y"
+#line 96 "pars.y"
             { (yyval.str) = strdup("float"); }
-#line 1237 "pars.tab.c"
+#line 1238 "pars.tab.c"
     break;
 
   case 27: /* type: DOUBLE  */
-#line 96 "pars.y"
+#line 97 "pars.y"
              { (yyval.str) = strdup("double"); }
-#line 1243 "pars.tab.c"
+#line 1244 "pars.tab.c"
     break;
 
   case 28: /* type: CHAR  */
-#line 97 "pars.y"
+#line 98 "pars.y"
            { (yyval.str) = strdup("char"); }
-#line 1249 "pars.tab.c"
+#line 1250 "pars.tab.c"
     break;
 
 
-#line 1253 "pars.tab.c"
+#line 1254 "pars.tab.c"
 
       default: break;
     }
@@ -1442,7 +1443,7 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 100 "pars.y"
+#line 101 "pars.y"
 
 
 // Error handling function
@@ -1451,5 +1452,16 @@ void yyerror(const char *s) {
 }
 
 int main(int argc, char **argv) {
-    return yyparse();
+    FILE *file = fopen("ejemplo_computadoras.sql", "r");
+    if (!file) {
+        perror("Could not open ejemplo_computadoras.sql");
+        return 1;
+    }
+    
+    yyin = file;  // Set the input file for the lexer
+
+    int result = yyparse();  // Call the parser
+    
+    fclose(file);  // Close the file after parsing
+    return result;
 }

@@ -1,5 +1,4 @@
 %{
-#include "pars.tab.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -12,49 +11,68 @@ NUMBER [0-9]+
 STRING \"(\\.|[^\\"])*\"
 
 %%
-"SELECT"         { return SELECT; }
-"FROM"           { return FROM; }
-"WHERE"          { return WHERE; }
-"INSERT"         { return INSERT; }
-"INTO"           { return INTO; }
-"VALUES"         { return VALUES; }
-"DELETE"         { return DELETE; }
-"UPDATE"         { return UPDATE; }
-"SET"            { return SET; }
-"CREATE"         { return CREATE; }
-"TABLE"          { return TABLE; }
-"DROP"           { return DROP; }
-"ALTER"          { return ALTER; }
-"ADD"            { return ADD; }
-"COLUMN"         { return COLUMN; }
-"IF"             { return IF; }
-"ELSE"           { return ELSE; }
-"WHILE"          { return WHILE; }
-"RETURN"         { return RETURN; }
-"INT"            { return INT; }
-"FLOAT"          { return FLOAT; }
-"DOUBLE"         { return DOUBLE; }
-"CHAR"           { return CHAR; }
-":="             { return ASSIGN; }
-"="              { return EQ; }
-"!="             { return NEQ; }
-"<"              { return LT; }
-">"              { return GT; }
-"<="             { return LEQ; }
-">="             { return GEQ; }
-"+"              { return PLUS; }
-"-"              { return MINUS; }
-"*"              { return TIMES; }
-"/"              { return DIVIDE; }
-"("              { return LPAREN; }
-")"              { return RPAREN; }
-{IDENTIFIER}     { yylval.str = strdup(yytext); return IDENTIFIER; }
-{NUMBER}         { yylval.num = atoi(yytext); return NUMBER; }
-{STRING}         { yylval.str = strdup(yytext); return STRING; }
-[ \t\n]+         { /* Ignorar espacios en blanco */ }
+"SELECT"         { printf("Token: SELECT\n"); }
+"FROM"           { printf("Token: FROM\n"); }
+"WHERE"          { printf("Token: WHERE\n"); }
+"INSERT"         { printf("Token: INSERT\n"); }
+"INTO"           { printf("Token: INTO\n"); }
+"VALUES"         { printf("Token: VALUES\n"); }
+"DELETE"         { printf("Token: DELETE\n"); }
+"UPDATE"         { printf("Token: UPDATE\n"); }
+"SET"            { printf("Token: SET\n"); }
+"CREATE"         { printf("Token: CREATE\n"); }
+"TABLE"          { printf("Token: TABLE\n"); }
+"DROP"           { printf("Token: DROP\n"); }
+"ALTER"          { printf("Token: ALTER\n"); }
+"ADD"            { printf("Token: ADD\n"); }
+"COLUMN"         { printf("Token: COLUMN\n"); }
+"IF"             { printf("Token: IF\n"); }
+"ELSE"           { printf("Token: ELSE\n"); }
+"WHILE"          { printf("Token: WHILE\n"); }
+"RETURN"         { printf("Token: RETURN\n"); }
+"INT"            { printf("Token: INT\n"); }
+"FLOAT"          { printf("Token: FLOAT\n"); }
+"DOUBLE"         { printf("Token: DOUBLE\n"); }
+"CHAR"           { printf("Token: CHAR\n"); }
+":="             { printf("Token: ASSIGN\n"); }
+"="              { printf("Token: EQ\n"); }
+"!="             { printf("Token: NEQ\n"); }
+"<"              { printf("Token: LT\n"); }
+">"              { printf("Token: GT\n"); }
+"<="             { printf("Token: LEQ\n"); }
+">="             { printf("Token: GEQ\n"); }
+"+"              { printf("Token: PLUS\n"); }
+"-"              { printf("Token: MINUS\n"); }
+"*"              { printf("Token: TIMES\n"); }
+"/"              { printf("Token: DIVIDE\n"); }
+"("              { printf("Token: LPAREN\n"); }
+")"              { printf("Token: RPAREN\n"); }
+{IDENTIFIER}     { printf("Token: IDENTIFIER (%s)\n", yytext); }
+{NUMBER}         { printf("Token: NUMBER (%s)\n", yytext); }
+{STRING}         { printf("Token: STRING (%s)\n", yytext); }
+[ \t\n]+         { /* Ignore whitespaces */ }
 .                { printf("Unexpected character: %s\n", yytext); exit(1); }
 %%
 
 int yywrap() {
     return 1;
+}
+
+int main(int argc, char **argv) {
+    // Open the input file
+    FILE *file = fopen("ejemplo_computadoras.sql", "r");
+    if (!file) {
+        perror("Could not open file ejemplo_computadoras.sql");
+        return 1;
+    }
+
+    // Set yyin to read from the file
+    yyin = file;
+
+    // Start the lexer
+    yylex();
+
+    // Close the file
+    fclose(file);
+    return 0;
 }

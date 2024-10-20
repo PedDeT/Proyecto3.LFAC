@@ -5,6 +5,7 @@
 
 void yyerror(const char *s);
 extern int yylex();
+extern FILE *yyin;  // File pointer for input
 %}
 
 %union {
@@ -105,5 +106,16 @@ void yyerror(const char *s) {
 }
 
 int main(int argc, char **argv) {
-    return yyparse();
+    FILE *file = fopen("ejemplo_computadoras.sql", "r");
+    if (!file) {
+        perror("Could not open ejemplo_computadoras.sql");
+        return 1;
+    }
+    
+    yyin = file;  // Set the input file for the lexer
+
+    int result = yyparse();  // Call the parser
+    
+    fclose(file);  // Close the file after parsing
+    return result;
 }
