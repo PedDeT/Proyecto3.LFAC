@@ -5,5 +5,5 @@ CREATE TABLE computadoras (
     ano INT,
     precio FLOAT
 );
-INSERT INTO computadoras (id, marca, modelo, ano, precio) VALUES (1, 'Dell', 'XPS 13', 2021, 999.99);
+INSERT INTO computadoras (id, marca, modelo, ano, precio) VALUES (1, 'Dell', 'XPS 13', 2021, 999);
 SELECT * FROM computadoras WHERE ano >= 2021;

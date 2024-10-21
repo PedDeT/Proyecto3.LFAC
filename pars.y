@@ -88,7 +88,7 @@ term:
 factor:
     NUMBER { $$ = $1; }
     | IDENTIFIER { $$ = 0; /* Placeholder value */ }
-    | '(' expression ')' { $$ = $2; }
+    | LPAREN expression RPAREN { $$ = $2; }
     ;
 
 type:

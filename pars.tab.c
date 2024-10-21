@@ -589,7 +589,7 @@ yysymbol_name (yysymbol_kind_t yysymbol)
 }
 #endif
 
-#define YYPACT_NINF (-33)
+#define YYPACT_NINF (-31)
 
 #define yypact_value_is_default(Yyn) \
   ((Yyn) == YYPACT_NINF)
@@ -603,12 +603,12 @@ yysymbol_name (yysymbol_kind_t yysymbol)
    STATE-NUM.  */
 static const yytype_int8 yypact[] =
 {
-      -3,   -25,   -33,   -32,   -23,   -33,   -33,   -33,   -33,    -2,
-      16,    -3,   -33,   -33,   -33,   -33,   -33,   -33,    -7,    -4,
-     -33,    11,    -2,    -2,    -2,   -33,   -30,   -33,   -33,    -2,
-      -2,   -33,    -2,    -2,   -10,    -5,   -28,   -26,   -33,    -4,
-      -4,   -33,   -33,   -33,   -33,    -3,    -3,    26,   -33,    -3,
-     -33
+      -1,   -17,   -31,   -23,   -21,   -31,   -31,   -31,   -31,     0,
+      18,    -1,   -31,   -31,   -31,   -31,   -31,   -31,   -30,     3,
+     -31,    25,     0,     0,     0,   -31,    -4,   -31,   -31,     0,
+       0,   -31,     0,     0,   -12,    -7,   -28,   -26,   -31,     3,
+       3,   -31,   -31,   -31,   -31,    -1,    -1,    26,   -31,    -1,
+     -31
 };
 
 /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -627,8 +627,8 @@ static const yytype_int8 yydefact[] =
 /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-     -33,   -33,   -33,    -6,   -33,   -33,   -33,   -33,   -33,     4,
-      15,    14,   -33
+     -31,   -31,   -31,   -11,   -31,   -31,   -31,   -31,   -31,    -8,
+      14,    13,   -31
 };
 
 /* YYDEFGOTO[NTERM-NUM].  */
@@ -643,30 +643,30 @@ static const yytype_int8 yydefgoto[] =
    number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_int8 yytable[] =
 {
-       1,    25,     2,     2,    22,    28,    29,    30,    29,    30,
-      29,    30,    23,    26,    34,    38,    27,    45,     3,    46,
-       4,    24,     5,     6,     7,     8,    35,    36,    37,    29,
-      30,    29,    30,    43,    32,    33,    31,     0,    44,    47,
-      48,     9,     9,    50,    39,    40,    41,    42,    49
+      28,    26,     1,    25,     2,     2,    29,    30,    29,    30,
+      29,    30,    22,    31,    35,    36,    37,    45,    27,    46,
+       3,    23,     4,    24,     5,     6,     7,     8,    34,    29,
+      30,    43,    29,    30,    47,    48,    44,    38,    50,     9,
+       9,    32,    33,    39,    40,    41,    42,     0,    49
 };
 
 static const yytype_int8 yycheck[] =
 {
-       3,     3,     5,     5,    29,    11,    36,    37,    36,    37,
-      36,    37,    44,     9,     3,    45,     0,    45,    21,    45,
-      23,    44,    25,    26,    27,    28,    22,    23,    24,    36,
-      37,    36,    37,    43,    38,    39,    43,    -1,    43,    45,
-      46,    44,    44,    49,    29,    30,    32,    33,    22
+      11,     9,     3,     3,     5,     5,    36,    37,    36,    37,
+      36,    37,    29,    43,    22,    23,    24,    45,     0,    45,
+      21,    44,    23,    44,    25,    26,    27,    28,     3,    36,
+      37,    43,    36,    37,    45,    46,    43,    41,    49,    40,
+      40,    38,    39,    29,    30,    32,    33,    -1,    22
 };
 
 /* YYSTOS[STATE-NUM] -- The symbol kind of the accessing symbol of
    state STATE-NUM.  */
 static const yytype_int8 yystos[] =
 {
-       0,     3,     5,    21,    23,    25,    26,    27,    28,    44,
+       0,     3,     5,    21,    23,    25,    26,    27,    28,    40,
       47,    48,    49,    50,    51,    52,    53,    54,    55,    56,
       57,    58,    29,    44,    44,     3,    55,     0,    49,    36,
-      37,    43,    38,    39,     3,    55,    55,    55,    45,    56,
+      37,    43,    38,    39,     3,    55,    55,    55,    41,    56,
       56,    57,    57,    43,    43,    45,    45,    49,    49,    22,
       49
 };
@@ -1219,9 +1219,9 @@ yyreduce:
 #line 1220 "pars.tab.c"
     break;
 
-  case 24: /* factor: '(' expression ')'  */
+  case 24: /* factor: LPAREN expression RPAREN  */
 #line 91 "pars.y"
-                         { (yyval.num) = (yyvsp[-1].num); }
+                               { (yyval.num) = (yyvsp[-1].num); }
 #line 1226 "pars.tab.c"
     break;
 
